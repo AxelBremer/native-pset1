@@ -15,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+    /*
+     * This function handles the events when a checkbox is clicked. It checks which box it is
+     * and then sets the corresponding image to either visible or invisible.
+     */
     public void boxClick(View view) {
         View part;
         switch(view.getId()){
@@ -60,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
+     /*
+      * This function changes the visibility of a given view to either Visible or Invisible
+      * depending on it's current visibility.
+      */
     private void changeVisibility(View view) {
         if (view.getVisibility() == View.VISIBLE) {
             view.setVisibility(View.INVISIBLE);
@@ -69,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+     * This function saves the visibility of all the images in an outState bundle.
+     */
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -84,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+     * This function restores the visibility of all the images from an inState bundle.
+     */
     public void onRestoreInstanceState(Bundle inState) {
         super.onRestoreInstanceState(inState);
 
