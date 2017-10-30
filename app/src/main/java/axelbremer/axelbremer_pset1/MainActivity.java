@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +66,35 @@ public class MainActivity extends AppCompatActivity {
             view.setVisibility(View.INVISIBLE);
         } else {
             view.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        FrameLayout pl = findViewById(R.id.potatoLayout);
+
+        final int childCount = pl.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View v = pl.getChildAt(i);
+            String id = Integer.toString(v.getId());
+            Integer vis = v.getVisibility();
+            Log.d("LANDCHANGE", "onSaveInstanceState: " + id + vis);
+            outState.putInt(id, vis);
+        }
+    }
+
+    public void onRestoreInstanceState(Bundle inState) {
+        super.onRestoreInstanceState(inState);
+
+        FrameLayout pl = findViewById(R.id.potatoLayout);
+
+        final int childCount = pl.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View v = pl.getChildAt(i);
+            String id = Integer.toString(v.getId());
+            Integer vis = inState.getInt(id);
+            v.setVisibility(vis);
         }
     }
 }
